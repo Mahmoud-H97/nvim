@@ -15,9 +15,9 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 --- for win...
-vim.opt.undodir =  "C:/Users/Mahmo/AppData/Local/nvim-data/undo"
+-- vim.opt.undodir =  "C:/Users/Mahmo/AppData/Local/nvim-data/undo"
 --- for Linux
---vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 vim.opt.undofile = true
 

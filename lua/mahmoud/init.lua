@@ -1,7 +1,13 @@
 require("mahmoud.set")
 require("mahmoud.remap")
 require("mahmoud.lazy_init")
-
+--[[
+function ColorMyPencils(color)
+    vim.cmd.colorscheme(color)
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+]]--
 
 local augroup = vim.api.nvim_create_augroup
 local MahmoudGroup = augroup('Mahmoud', {})
@@ -36,22 +42,26 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
+--[[
 autocmd('BufEnter', {
     group = MahmoudGroup,
     callback = ColorMyPencils,
 })
-
+--]]
 autocmd('BufEnter', {
     group = MahmoudGroup,
     callback = function()
         if vim.bo.filetype == "cpp" then
             vim.cmd.colorscheme("everforest")
-        elseif vim.bo.filetype == "py" then
-            vim.cmd.colorscheme("kanagawa-dragon")
+        elseif vim.bo.filetype == "python" then
+            vim.cmd.colorscheme("retrobox")
+            vim.api.nvim_set_hl(0, "Normal", {bg = "#000000"})
+        elseif vim.bo.filetype == "sh" then
+            vim.cmd.colorscheme("lunaperche")
         elseif vim.bo.filetype == "fortran" then
-            ColorMyPencils("tokyonight-night")
+            vim.cmd.colorscheme("tokyonight-night")
         else
-            ColorMyPencils()
+            vim.cmd.colorscheme(moonfly)
         end
     end,
 })
